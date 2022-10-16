@@ -6,10 +6,11 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%--<jsp:useBean id="table" class="beans.TableDB" scope="session" />--%>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Лабораторная работа 1</title>
+    <title>Лабораторная работа 2</title>
     <link rel="stylesheet" href="css/main.css">
 </head>
 <script src="https://code.jquery.com/jquery-1.12.3.min.js"
@@ -20,11 +21,11 @@
 <body onload="fillValues()">
 <div class="container">
     <div class="header">
-        <p class="title">Бернятцкая Кристина, P32081.<br>Вариант №1104.<br></p>
+        <p class="title">Бернятцкая Кристина, P32081.<br>Вариант №231.<br></p>
         <p id="txt" class="title"></p>
     </div>
     <div class="content">
-        <h2 id="header">Лабораторная работа №1</h2>
+        <h2 id="header">Лабораторная работа №2</h2>
         <!--<img src="resource/areas.png" id = "graph" alt="График">-->
         <canvas id="graph" height="200" width="200"></canvas>
         <script src="js/drawer.js"></script>
@@ -33,6 +34,7 @@
         <p id="errorMessage"></p>
         <form name="OptionForm" id="OptionForm" method="GET" action="">
             <fieldset>
+                <!-- x have to be checkbox-->
                 <div class="labels">
                     <label for="X">X ∈ <b>[-5, 3]</b></label>
                     <select id="X" name="X">
@@ -49,13 +51,20 @@
                     <label for="Y">Y ∈ <b>[-3, 5]</b></label>
                     <input type="text" maxlength="10" class="number" id="Y" name="Y"><br>
                     <label for="R">R ∈ <b>[2, 5]</b></label>
-                    <input type="text" maxlength="10" class="positive" id="R" name="R"><br>
+                    <select id="R" name="R">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </select><br>
                 </div>
                 <input type="button" id="submit" value="Проверить">
             </fieldset>
         </form>
         <div id="results">
             <h3>Таблица результатов</h3>
+            <h2></h2>
             <button id="cleanButton" onclick="cleanTable()">Очистить</button>
             <table id="respTable">
                 <tr>
