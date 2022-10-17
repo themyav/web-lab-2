@@ -14,6 +14,9 @@ public class ControllerServlet extends HttpServlet {
             RequestDispatcher rd = request.getRequestDispatcher("AreaCheckServlet");
             rd.forward(request,response);
         }
+        else if(request.getParameter("action") != null){
+            request.getRequestDispatcher("TableControllerServlet").forward(request, response);
+        }
         /*response.setContentType("text/html");
         PrintWriter writer = response.getWriter();
         // получаем параметр id

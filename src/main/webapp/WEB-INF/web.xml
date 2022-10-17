@@ -19,4 +19,13 @@
         <servlet-name>AreaCheckServlet</servlet-name>
         <url-pattern>/AreaCheckServlet</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>TableController</servlet-name>
+        <servlet-class>servlets.TableControllerServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>TableController</servlet-name>
+        <url-pattern>/TableController</url-pattern>
+    </servlet-mapping>
+
 </web-app>

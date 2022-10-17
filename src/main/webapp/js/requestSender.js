@@ -44,6 +44,10 @@ $(document).ready(function(){
         sendAreaCheckRequest(false);
     });
 
+    $('#cleanButton').click(function (){
+        sendCleanRequest();
+    });
+
     $('#Y').on('input', function(){
         this.value = this.value.replace(/[^0-9.\-]/g, '');
     });

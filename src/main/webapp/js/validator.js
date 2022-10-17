@@ -44,7 +44,6 @@ function checkValue(value, min, max, positive){
 
 function cleanTable(){
     restoreCanvas();
-    sendCleanRequest();
     let table = document.getElementById("respTable");
     while(table.rows.length > 1){
         table.deleteRow(1);
@@ -66,7 +65,8 @@ function validate(){
     let R = document.forms["OptionForm"]["R"].value;
 
     colorError("Y", checkValue(Y, -3, 3, 0));
-
+    console.log("validation start");
+    console.log(checkValue(X, -3, 5, 0) && checkValue(Y, -3, 3, 0) && checkValue(R, 1, 5, 1));
     return checkValue(X, -3, 5, 0) && checkValue(Y, -3, 3, 0) && checkValue(R, 1, 5, 1);
 
 }

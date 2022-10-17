@@ -65,7 +65,7 @@
         </form>
         <div id="results">
             <h3>Таблица результатов</h3>
-            <button id="cleanButton" onclick="cleanTable()">Очистить</button>
+            <button id="cleanButton">Очистить</button>
             <table id="respTable">
                 <tr>
                     <th id="testing">X</th>
