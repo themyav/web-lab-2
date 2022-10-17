@@ -1,20 +1,21 @@
-function sendRequest(clicked){
+function sendAreaCheckRequest(clicked){
     if(clicked || (validate() && checkValue($('#R').val(), 2, 5, 1))){
         $.ajax({
             type: 'get',
             url:'http://localhost:8080/web_lab_2_war_exploded/ControllerServlet',
             data: {'X' : $('#X').val(), 'Y' : $('#Y').val(), 'R' : $('#R').val()},
             success:function(response){
-                /*$(response).insertAfter($("#respTable > tbody > tr:first"));
-                let tableCookie = "";
+                $(response).insertAfter($("#respTable > tbody > tr:first"));
+                /*let tableCookie = "";
                 for(let i = 2; i <= document.getElementById("respTable").rows.length; i++){
                     tableCookie += "<tr>" + $("#respTable > tbody > tr:nth-child(" + i + ")").html() + "</tr>";
                 }
                 document.cookie = "table=" + tableCookie.toString();*/
-                let text = $("#testing").text();
-                $("#testing").text(text.replace(response.toString()));
+               // let text = $("#testing").text();
+                //$("#testing").text(text.replace(response.toString()));
                 console.log("answer got");
                 console.log(response.toString());
+                //document.getElementById("testing").innerHTML = response.toString();
                 document.getElementById('errorMessage').innerText = '';
 
             }
@@ -25,11 +26,22 @@ function sendRequest(clicked){
     }
 }
 
+function sendCleanRequest(){
+    $.ajax({
+        type: 'get',
+        url:'http://localhost:8080/web_lab_2_war_exploded/ControllerServlet',
+        data: {'action' : 'clean'},
+        success:function(){
+            cleanTable();
+        }
+    });
+}
+
 
 $(document).ready(function(){
 
     $('#submit').click(function(){
-        sendRequest(false);
+        sendAreaCheckRequest(false);
     });
 
     $('#Y').on('input', function(){
@@ -63,7 +75,7 @@ $(document).ready(function(){
                 document.getElementById('errorMessage').innerText = 'Значение X или Y в данной точке не корректно!';
             }
             else{
-                sendRequest(true);
+                sendAreaCheckRequest(true);
                 restoreCanvas();
                 drawPoint(x_pos,y_pos, '', ctx);
                 document.getElementById('errorMessage').innerText = '';

@@ -63,9 +63,10 @@ public class AreaCheckServlet extends HttpServlet {
             request.getSession().setAttribute("table", table);
 
             //возвращаем ответ от сервера
-            response.setContentType("text/plain");
+            response.setContentType("text/html");
             OutputStream outputStream = response.getOutputStream();
-            outputStream.write(table.toString().getBytes(StandardCharsets.UTF_8));
+            //outputStream.write(table.toString().getBytes(StandardCharsets.UTF_8));
+            outputStream.write(row.toString().getBytes(StandardCharsets.UTF_8));
             outputStream.flush();
             outputStream.close();
 

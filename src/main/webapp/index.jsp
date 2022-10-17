@@ -49,9 +49,9 @@
                         <option value="2">2</option>
                         <option value="3">3</option>
                     </select><br>
-                    <label for="Y">Y ∈ <b>[-3, 5]</b></label>
+                    <label for="Y">Y ∈ <b>[-3, 3]</b></label>
                     <input type="text" maxlength="10" class="number" id="Y" name="Y"><br>
-                    <label for="R">R ∈ <b>[2, 5]</b></label>
+                    <label for="R">R ∈ <b>[1, 5]</b></label>
                     <select id="R" name="R">
                         <option value="1">1</option>
                         <option value="2">2</option>
@@ -65,17 +65,6 @@
         </form>
         <div id="results">
             <h3>Таблица результатов</h3>
-            <p>2 + 2 = <%=table.toString()%></p>
-            <h2>
-                <% if(table != null){
-                    for(Result row : table.getResults()){
-                        System.out.println(row.getX());
-                    }
-                }
-                else{
-                    System.out.println("Empty!");
-                }%>
-            </h2>
             <button id="cleanButton" onclick="cleanTable()">Очистить</button>
             <table id="respTable">
                 <tr>

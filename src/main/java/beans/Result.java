@@ -29,7 +29,8 @@ public class Result implements Serializable{
 
     @Override
     public String toString(){
-        return getX() + " "  + getY() + " " + getR() + " " + isInArea() + " " + getDate() + " " + getTime();
+        return String.format("<tr><td>%s</td><td>%s</td><td>%s</td><td>%s</td><td>%s</td></tr>", getX(), getY(), getR(), getTime(), getDate());
+        //return "<tr>" +getX() + " "  + getY() + " " + getR() + " " + isInArea() + " " + getDate() + " " + getTime();
     }
 
     public double getX() {

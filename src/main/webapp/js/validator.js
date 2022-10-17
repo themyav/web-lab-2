@@ -44,12 +44,11 @@ function checkValue(value, min, max, positive){
 
 function cleanTable(){
     restoreCanvas();
-    /*let table = document.getElementById("respTable");
+    sendCleanRequest();
+    let table = document.getElementById("respTable");
     while(table.rows.length > 1){
         table.deleteRow(1);
     }
-    document.cookie = "table=;expires=" + new Date(0).toUTCString();
-    console.log(document.cookie);*/
 }
 
 function colorError(id, ok){
@@ -66,9 +65,8 @@ function validate(){
     let Y = document.forms["OptionForm"]["Y"].value;
     let R = document.forms["OptionForm"]["R"].value;
 
-    colorError("Y", checkValue(Y, -3, 5, 0));
-    colorError("R", checkValue(R, 2, 5, 1));
+    colorError("Y", checkValue(Y, -3, 3, 0));
 
-    return checkValue(X, -5, 3, 0) && checkValue(Y, -3, 5, 0) && checkValue(R, 2, 5, 1);
+    return checkValue(X, -3, 5, 0) && checkValue(Y, -3, 3, 0) && checkValue(R, 1, 5, 1);
 
 }
