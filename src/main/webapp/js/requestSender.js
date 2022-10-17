@@ -52,8 +52,20 @@ $(document).ready(function(){
         this.value = this.value.replace(/[^0-9.\-]/g, '');
     });
 
-    $('#R').on('input', function(){
+    /*$('#R').on('input', function(){
         this.value = this.value.replace(/[^0-9.]/g, '');
+    });*/
+
+    $("input:checkbox").on('click', function() {
+        let $box = $(this);
+        if ($box.is(":checked")) {
+            let group = "input:checkbox[name='" + $box.attr("name") + "']";
+            console.log(group);
+            $(group).prop("checked", false);
+            $box.prop("checked", true);
+        } else {
+            $box.prop("checked", false);
+        }
     });
 
     $('#graph').on('click', function (e){

@@ -12,6 +12,8 @@
     background: lavender;
 }
 
+
+
 img{
     border-radius: 8px;
 }
@@ -129,4 +131,10 @@ h3{
 
 .title{
     color: black;
+}
+.checkbox{
+    display: inline-block;
+}
+.radio{
+    float: left;
 }

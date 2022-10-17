@@ -37,18 +37,18 @@
             <fieldset>
                 <!-- x have to be checkbox-->
                 <div class="labels">
-                    <label for="X">X ∈ <b>[-5, 3]</b></label>
-                    <select id="X" name="X">
-                        <option value="-5">-5</option>
-                        <option value="-4">-4</option>
-                        <option value="-3">-3</option>
-                        <option value="-2">-2</option>
-                        <option value="-1">-1</option>
-                        <option value="0">0</option>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                    </select><br>
+                    <label>X ∈ <b>[-3, 5]</b></label>
+                    <div class="checkbox" id="checkbox">
+                        <label><input type="checkbox" class="radio" value="-3" name="X"/>-3</label>
+                        <label><input type="checkbox" class="radio" value="-2" name="X"/>-2</label>
+                        <label><input type="checkbox" class="radio" value="-1" name="X"/>-1</label>
+                        <label><input type="checkbox" class="radio" value="0" name="X"/>0</label>
+                        <label><input type="checkbox" class="radio" value="1" name="X"/>1</label>
+                        <label><input type="checkbox" class="radio" value="2" name="X"/>2</label>
+                        <label><input type="checkbox" class="radio" value="3" name="X"/>3</label>
+                        <label><input type="checkbox" class="radio" value="4" name="X"/>4</label>
+                        <label><input type="checkbox" class="radio" value="5" name="X"/>5</label>
+                    </div>
                     <label for="Y">Y ∈ <b>[-3, 3]</b></label>
                     <input type="text" maxlength="10" class="number" id="Y" name="Y"><br>
                     <label for="R">R ∈ <b>[1, 5]</b></label>
