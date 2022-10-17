@@ -16,23 +16,17 @@ function checkTime(i) {
     return i;
 }
 
-function fillTable(){
-    /*let cookies = document.cookie.split(';'), i = 0;
-    while(i < cookies.length && cookies[i].toString().search('table') === -1) {
-        i++;
-    }
-    console.log(cookies[i]);
-    if(i < cookies.length){
-
-        let header = "<tr><th>X</th><th>Y</th><th>R</th><th>Результат</th><th>Время работы скрипта</th><th>Дата и время</th></tr>";
-        document.getElementById("respTable").innerHTML = (header + cookies[i].split('=')[1]).trim();
-    }*/
+function fillTable(response){
+    console.log("got " + response);
+    let header = "<tr><th>X</th><th>Y</th><th>R</th><th>Результат</th><th>Время работы скрипта</th><th>Дата и время</th></tr>";
+    document.getElementById("respTable").innerHTML = (header + response);
 
 }
 
 function fillValues(){
-    fillTable();
     startTime();
+    console.log("gonna update");
+    sendFillRequest();
 
 }
 
@@ -56,11 +50,6 @@ function colorError(id, ok){
         document.getElementById(id).style.backgroundColor = "lightpink";
     }
     else document.getElementById(id).style.backgroundColor = "white";
-}
-
-function getX(){
-    let group = "input:checkbox[name='X']";
-
 }
 
 function validate(){

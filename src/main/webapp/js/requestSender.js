@@ -1,21 +1,20 @@
 function sendAreaCheckRequest(clicked){
-    if(clicked || (validate() && checkValue($('#R').val(), 2, 5, 1))){
+    if(clicked || (validate() && checkValue($('#R').val(), 1, 5, 1))){
         $.ajax({
             type: 'get',
             url:'http://localhost:8080/web_lab_2_war_exploded/ControllerServlet',
             data: {'X' : $("input:checkbox[name='X']:checked").val(), 'Y' : $('#Y').val(), 'R' : $('#R').val()},
             success:function(response){
                 $(response).insertAfter($("#respTable > tbody > tr:first"));
+
                 /*let tableCookie = "";
                 for(let i = 2; i <= document.getElementById("respTable").rows.length; i++){
                     tableCookie += "<tr>" + $("#respTable > tbody > tr:nth-child(" + i + ")").html() + "</tr>";
                 }
                 document.cookie = "table=" + tableCookie.toString();*/
-               // let text = $("#testing").text();
-                //$("#testing").text(text.replace(response.toString()));
-                console.log("answer got");
-                console.log(response.toString());
-                //document.getElementById("testing").innerHTML = response.toString();
+
+                //console.log("answer got");
+                //console.log(response.toString());
                 document.getElementById('errorMessage').innerText = '';
 
             }
@@ -33,6 +32,17 @@ function sendCleanRequest(){
         data: {'action' : 'clean'},
         success:function(){
             cleanTable();
+        }
+    });
+}
+
+function sendFillRequest(){
+    $.ajax({
+        type: 'get',
+        url:'http://localhost:8080/web_lab_2_war_exploded/ControllerServlet',
+        data: {'action' : 'fill'},
+        success:function(response){
+            fillTable(response);
         }
     });
 }
@@ -82,10 +92,12 @@ $(document).ready(function(){
             y_cord *=k;
             console.log(k + ' ' + x_cord + ' ' + y_cord);
             document.getElementById('errorMessage').innerText = '';
-            document.getElementById('X').value=Math.round(x_cord.toFixed(4)).toString();
+            let x_val = Math.round(x_cord.toFixed(4)).toString();
+            let element = "input:checkbox[value=" + x_val.toString() + "]:checked"
+            $(element).val(x_val);
             document.getElementById('Y').value=y_cord.toFixed(4).toString();
 
-            let X = $("#X").val();
+            let X = $("input:checkbox[name='X']:checked").val();
             let Y = $("#Y").val();
             if(X == null || Y == null || !checkValue(X, -5, 3, 0) || !checkValue(Y, -3, 5, 0)) {
                 document.getElementById('errorMessage').innerText = 'Значение X или Y в данной точке не корректно!';
