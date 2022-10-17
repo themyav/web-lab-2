@@ -3,7 +3,7 @@ function sendAreaCheckRequest(clicked){
         $.ajax({
             type: 'get',
             url:'http://localhost:8080/web_lab_2_war_exploded/ControllerServlet',
-            data: {'X' : $('#X').val(), 'Y' : $('#Y').val(), 'R' : $('#R').val()},
+            data: {'X' : $("input:checkbox[name='X']:checked").val(), 'Y' : $('#Y').val(), 'R' : $('#R').val()},
             success:function(response){
                 $(response).insertAfter($("#respTable > tbody > tr:first"));
                 /*let tableCookie = "";

@@ -58,9 +58,13 @@ function colorError(id, ok){
     else document.getElementById(id).style.backgroundColor = "white";
 }
 
+function getX(){
+    let group = "input:checkbox[name='X']";
+
+}
 
 function validate(){
-    let X = document.forms["OptionForm"]["X"].value;
+    let X = $("input:checkbox[name='X']:checked").val();//document.forms["OptionForm"]["X"].value;
     let Y = document.forms["OptionForm"]["Y"].value;
     let R = document.forms["OptionForm"]["R"].value;
 
