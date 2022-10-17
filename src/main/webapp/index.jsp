@@ -1,4 +1,4 @@
-<%--
+<%@ page import="beans.Result" %><%--
   Created by IntelliJ IDEA.
   User: kristina
   Date: 2022-10-15
@@ -6,13 +6,14 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%--<jsp:useBean id="table" class="beans.TableDB" scope="session" />--%>
+<jsp:useBean id="table" class="beans.TableDB" scope="session" />
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Лабораторная работа 2</title>
     <link rel="stylesheet" href="css/main.css">
 </head>
+
 <script src="https://code.jquery.com/jquery-1.12.3.min.js"
         integrity="sha256-aaODHAgvwQW1bFOGXMeX+pC4PZIPsvn2h1sArYOhgXQ="
         crossorigin="anonymous"></script>
@@ -64,11 +65,21 @@
         </form>
         <div id="results">
             <h3>Таблица результатов</h3>
-            <h2></h2>
+            <p>2 + 2 = <%=table.toString()%></p>
+            <h2>
+                <% if(table != null){
+                    for(Result row : table.getResults()){
+                        System.out.println(row.getX());
+                    }
+                }
+                else{
+                    System.out.println("Empty!");
+                }%>
+            </h2>
             <button id="cleanButton" onclick="cleanTable()">Очистить</button>
             <table id="respTable">
                 <tr>
-                    <th>X</th>
+                    <th id="testing">X</th>
                     <th>Y</th>
                     <th>R</th>
                     <th>Результат</th>

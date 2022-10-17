@@ -8,6 +8,8 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
+import java.io.OutputStream;
+import java.nio.charset.StandardCharsets;
 import java.time.LocalDate;
 import java.time.ZonedDateTime;
 import java.util.Date;
@@ -59,7 +61,16 @@ public class AreaCheckServlet extends HttpServlet {
             Result row = new Result(X, Y, R, inArea, LocalDate.now(), time);
             table.getResults().add(row); //тут не должно быть пустым...
             request.getSession().setAttribute("table", table);
+
+            //возвращаем ответ от сервера
+            response.setContentType("text/plain");
+            OutputStream outputStream = response.getOutputStream();
+            outputStream.write(table.toString().getBytes(StandardCharsets.UTF_8));
+            outputStream.flush();
+            outputStream.close();
+
             log(table.toString());
+            //getServletContext().getRequestDispatcher("/index.jsp").forward(request, response); //ничего не делает...
 
         }
         else log("data is incorrect");

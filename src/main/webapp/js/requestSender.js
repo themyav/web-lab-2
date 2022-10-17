@@ -11,7 +11,10 @@ function sendRequest(clicked){
                     tableCookie += "<tr>" + $("#respTable > tbody > tr:nth-child(" + i + ")").html() + "</tr>";
                 }
                 document.cookie = "table=" + tableCookie.toString();*/
+                let text = $("#testing").text();
+                $("#testing").text(text.replace(response.toString()));
                 console.log("answer got");
+                console.log(response.toString());
                 document.getElementById('errorMessage').innerText = '';
 
             }
