@@ -28,6 +28,7 @@ public class AreaCheckServlet extends HttpServlet {
             X = Double.parseDouble(x);
             Y = Double.parseDouble(y);
             R = Double.parseDouble(r);
+            if(X <= -3 || X >= 5 || R <= 1 || R >= 5 || Y <= -3 || Y <= 5) return false;
         }catch (NumberFormatException nfe){
             return false;
         }

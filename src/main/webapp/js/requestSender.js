@@ -51,7 +51,7 @@ $(document).ready(function(){
     });
 
     $('#Y').on('input', function(){
-        this.value = this.value.replace(/[^0-9.\-]/g, '');
+        this.value = this.value.replace(/[^0-9.,\-]/g, '');
     });
 
     $("input:checkbox").on('click', function() {

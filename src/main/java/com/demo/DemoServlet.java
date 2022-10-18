@@ -5,6 +5,7 @@ import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Scanner;
 
 @WebServlet(name = "DemoServlet", value = "/Demo")
 public class DemoServlet extends HttpServlet {
@@ -19,4 +20,11 @@ public class DemoServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
     }
+
+    public static void main(String[] args){
+        Scanner sc = new Scanner(System.in);
+        String X = sc.next();
+        System.out.println(Double.parseDouble(X));
+    }
 }
+
