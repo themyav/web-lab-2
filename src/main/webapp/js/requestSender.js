@@ -2,7 +2,7 @@ function sendAreaCheckRequest(clicked){
     if(clicked || (validate() && checkValue($('#R').val(), 1, 5, 1))){
         $.ajax({
             type: 'get',
-            url:'http://localhost:8080/web_lab_2_war_exploded/ControllerServlet',
+            url:'http://localhost:8600/web_lab_2_war_exploded/ControllerServlet',
             data: {'X' : $("input:checkbox[name='X']:checked").val(), 'Y' : $('#Y').val(), 'R' : $('#R').val()},
             success:function(response){
                 $(response).insertAfter($("#respTable > tbody > tr:first"));
@@ -28,7 +28,7 @@ function sendAreaCheckRequest(clicked){
 function sendCleanRequest(){
     $.ajax({
         type: 'get',
-        url:'http://localhost:8080/web_lab_2_war_exploded/ControllerServlet',
+        url:'http://localhost:8600/web_lab_2_war_exploded/ControllerServlet',
         data: {'action' : 'clean'},
         success:function(){
             cleanTable();
@@ -39,7 +39,7 @@ function sendCleanRequest(){
 function sendFillRequest(){
     $.ajax({
         type: 'get',
-        url:'http://localhost:8080/web_lab_2_war_exploded/ControllerServlet',
+        url:'http://localhost:8600/web_lab_2_war_exploded/ControllerServlet',
         data: {'action' : 'fill'},
         success:function(response){
             fillTable(response);

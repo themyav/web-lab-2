@@ -11,8 +11,8 @@ public class TableDB {
     @Override
     public String toString(){
         StringBuilder table = new StringBuilder();
-        for (Result result : results) {
-            table.append(result.toString());
+        for(int i = results.size() - 1; i >= 0; i--){
+            table.append(results.get(i).toString());
             table.append('\n');
         }
         return table.toString();
