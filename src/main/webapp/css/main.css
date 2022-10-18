@@ -73,8 +73,6 @@ input[type="button"], button{
     width: 100px;
     height: 30px;
     margin: 5px;
-
-
 }
 
 #errorMessage{
@@ -97,28 +95,10 @@ button:hover{
 
 #OptionForm{
     background-color: white;
-    width: 70%;
+    width: 80%;
     margin: 0 auto;
     border-radius: 8px;
     border: 0;
-}
-input, select{
-    width: 80px;
-    height: 25px;
-    margin: 2px;
-    border-radius: 8px;
-    font-weight: bold;
-    color: darkblue;
-    -moz-box-sizing: border-box;
-    -webkit-box-sizing: border-box;
-    box-sizing: border-box;
-}
-label{
-    display: inline-block;
-    float: left;
-    width: 180px;
-    font-size: 18px;
-    color: darkblue;
 }
 
 h2, h3{
@@ -132,9 +112,29 @@ h3{
 .title{
     color: black;
 }
-.checkbox{
-    display: inline-block;
+
+#checkbox > label{
+    margin: 0;
 }
-.radio{
+
+input[type="text"], select{
+    width: 80px;
+    height: 25px;
+    margin: 2px;
+    border-radius: 8px;
+    font-weight: bold;
+    color: darkblue;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+label{
+    font-size: 18px;
+    color: darkblue;
+}
+label[for]{
+    display: inline-block;
     float: left;
+    width: 180px;
 }

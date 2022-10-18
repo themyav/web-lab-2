@@ -36,21 +36,21 @@
         <form name="OptionForm" id="OptionForm" method="GET" action="">
             <fieldset>
                 <!-- x have to be checkbox-->
+                <label>X ∈ <b>[-3, 5]</b></label>
+                <div class="checkbox" id="checkbox">
+                    <label><input type="checkbox" class="radio" value="-3" name="X" checked>-3</label>
+                    <label><input type="checkbox" class="radio" value="-2" name="X"/>-2</label>
+                    <label><input type="checkbox" class="radio" value="-1" name="X"/>-1</label>
+                    <label><input type="checkbox" class="radio" value="0" name="X"/>0</label>
+                    <label><input type="checkbox" class="radio" value="1" name="X"/>1</label>
+                    <label><input type="checkbox" class="radio" value="2" name="X"/>2</label>
+                    <label><input type="checkbox" class="radio" value="3" name="X"/>3</label>
+                    <label><input type="checkbox" class="radio" value="4" name="X"/>4</label>
+                    <label><input type="checkbox" class="radio" value="5" name="X"/>5</label>
+                </div>
                 <div class="labels">
-                    <label>X ∈ <b>[-3, 5]</b></label>
-                    <div class="checkbox" id="checkbox">
-                        <label><input type="checkbox" class="radio" value="-3" name="X"/>-3</label>
-                        <label><input type="checkbox" class="radio" value="-2" name="X"/>-2</label>
-                        <label><input type="checkbox" class="radio" value="-1" name="X"/>-1</label>
-                        <label><input type="checkbox" class="radio" value="0" name="X"/>0</label>
-                        <label><input type="checkbox" class="radio" value="1" name="X"/>1</label>
-                        <label><input type="checkbox" class="radio" value="2" name="X"/>2</label>
-                        <label><input type="checkbox" class="radio" value="3" name="X"/>3</label>
-                        <label><input type="checkbox" class="radio" value="4" name="X"/>4</label>
-                        <label><input type="checkbox" class="radio" value="5" name="X"/>5</label>
-                    </div>
                     <label for="Y">Y ∈ <b>[-3, 3]</b></label>
-                    <input type="text" maxlength="10" class="number" id="Y" name="Y"><br>
+                    <input type="text" maxlength="10" class="number" id="Y" name="Y" value="-3"><br>
                     <label for="R">R ∈ <b>[1, 5]</b></label>
                     <select id="R" name="R">
                         <option value="1">1</option>
