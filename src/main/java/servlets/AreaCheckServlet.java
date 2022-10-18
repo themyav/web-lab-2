@@ -11,7 +11,9 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.nio.charset.StandardCharsets;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
 @WebServlet(name = "AreaCheckServlet", value = "/AreaCheckServlet")
@@ -22,10 +24,13 @@ public class AreaCheckServlet extends HttpServlet {
     private double R;
 
     private boolean  validate(String x, String y, String r){
-        //проверка значений регуляркой?
-        X = Double.parseDouble(x);
-        Y = Double.parseDouble(y);
-        R = Double.parseDouble(r);
+        try{
+            X = Double.parseDouble(x);
+            Y = Double.parseDouble(y);
+            R = Double.parseDouble(r);
+        }catch (NumberFormatException nfe){
+            return false;
+        }
         return true;
     }
 
@@ -44,7 +49,6 @@ public class AreaCheckServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        //add server validation
         long currentTime = System.currentTimeMillis();
         String x = request.getParameter("X");
         String y = request.getParameter("Y");
@@ -52,20 +56,18 @@ public class AreaCheckServlet extends HttpServlet {
         if(validate(x, y, r)){
             log("data is correct");
             boolean inArea = checkArea(X, Y, R);
-            double time = System.currentTimeMillis() - currentTime;
+            double time = (System.currentTimeMillis() - currentTime) / 1000.0;
 
-            //adding row to table
             TableDB table = (TableDB) request.getSession().getAttribute("table");
             if(table == null) table = new TableDB();
 
-            Result row = new Result(X, Y, R, inArea, LocalDate.now(), time);
-            table.getResults().add(row); //тут не должно быть пустым...
+
+            Result row = new Result(X, Y, R, inArea, LocalDateTime.now(), time);
+            table.getResults().add(row);
             request.getSession().setAttribute("table", table);
 
-            //возвращаем ответ от сервера
             response.setContentType("text/html");
             OutputStream outputStream = response.getOutputStream();
-            //outputStream.write(table.toString().getBytes(StandardCharsets.UTF_8));
             outputStream.write(row.toString().getBytes(StandardCharsets.UTF_8));
             outputStream.flush();
             outputStream.close();

@@ -1,16 +1,16 @@
 package beans;
 
 import java.time.LocalDate;
-import java.util.Date;
+import java.time.LocalDateTime;
 import java.io.Serializable;
-import java.util.Locale;
+import java.time.format.DateTimeFormatter;
 
 public class Result implements Serializable{
     public Result(){
 
     }
 
-    public Result(double x, double y, double r, boolean inArea, LocalDate date, double time){
+    public Result(double x, double y, double r, boolean inArea, LocalDateTime date, double time){
         this.x = x;
         this.y = y;
         this.r = r;
@@ -23,13 +23,15 @@ public class Result implements Serializable{
     private double y;
     private double r;
     private boolean inArea;
-    private LocalDate date;
+    private LocalDateTime date;
     private double time;
 
 
     @Override
     public String toString(){
-        return String.format("<tr><td>%s</td><td>%s</td><td>%s</td><td>%s</td><td>%s</td><td>%s</td></tr>", getX(), getY(), getR(), isInArea(), getTime(), getDate());
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        return String.format("<tr><td>%s</td><td>%s</td><td>%s</td><td>%s</td><td>%s</td><td>%s</td></tr>", getX(), getY(), getR(), isInArea(),
+                String.format("%.3f", getTime()), getDate().format(formatter));
     }
 
     public double getX() {
@@ -64,11 +66,11 @@ public class Result implements Serializable{
         this.inArea = inArea;
     }
 
-    public LocalDate getDate() {
+    public LocalDateTime getDate() {
         return date;
     }
 
-    public void setDate(LocalDate date) {
+    public void setDate(LocalDateTime date) {
         this.date = date;
     }
 
