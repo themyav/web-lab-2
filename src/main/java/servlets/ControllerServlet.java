@@ -11,23 +11,12 @@ public class ControllerServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         if(request.getParameter("X") != null && request.getParameter("Y") != null && request.getParameter("R") != null){
-            RequestDispatcher rd = request.getRequestDispatcher("AreaCheckServlet");
-            rd.forward(request,response);
+            request.getRequestDispatcher("AreaCheckServlet").forward(request,response);
         }
         else if(request.getParameter("action") != null){
             request.getRequestDispatcher("TableControllerServlet").forward(request, response);
         }
-        /*response.setContentType("text/html");
-        PrintWriter writer = response.getWriter();
-        // получаем параметр id
-        String id = request.getParameter("id");
-
-        try {
-            writer.println("<h2>Id:" + id + "</h2>");
-        } finally {
-            writer.close();
-        }
-         */
+        else request.getRequestDispatcher("/index.jsp").forward(request, response);
     }
 
     @Override

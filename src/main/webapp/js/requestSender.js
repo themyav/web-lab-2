@@ -1,20 +1,12 @@
 function sendAreaCheckRequest(clicked){
     if(clicked || (validate() && checkValue($('#R').val(), 1, 5, 1))){
+
         $.ajax({
             type: 'get',
             url:'http://localhost:8600/web_lab_2_war_exploded/ControllerServlet',
             data: {'X' : $("input:checkbox[name='X']:checked").val(), 'Y' : $('#Y').val(), 'R' : $('#R').val()},
             success:function(response){
                 $(response).insertAfter($("#respTable > tbody > tr:first"));
-
-                /*let tableCookie = "";
-                for(let i = 2; i <= document.getElementById("respTable").rows.length; i++){
-                    tableCookie += "<tr>" + $("#respTable > tbody > tr:nth-child(" + i + ")").html() + "</tr>";
-                }
-                document.cookie = "table=" + tableCookie.toString();*/
-
-                //console.log("answer got");
-                //console.log(response.toString());
                 document.getElementById('errorMessage').innerText = '';
 
             }
@@ -62,10 +54,6 @@ $(document).ready(function(){
         this.value = this.value.replace(/[^0-9.\-]/g, '');
     });
 
-    /*$('#R').on('input', function(){
-        this.value = this.value.replace(/[^0-9.]/g, '');
-    });*/
-
     $("input:checkbox").on('click', function() {
         let $box = $(this);
         if ($box.is(":checked")) {
@@ -85,16 +73,21 @@ $(document).ready(function(){
         let zero_y = document.getElementById('graph').offsetHeight / 2;
 
         let y_cord = -1 * (y_pos - zero_y), x_cord = (x_pos - zero_x), R = $('#R').val();
-        if(checkValue(R, 2, 5, 1)){
+        if(checkValue(R, 1, 5, 1)){
             let w = R / 0.8;
             let k = w / zero_x;
             x_cord *=k;
             y_cord *=k;
-            console.log(k + ' ' + x_cord + ' ' + y_cord);
             document.getElementById('errorMessage').innerText = '';
-            let x_val = Math.round(x_cord.toFixed(4)).toString();
-            let element = "input:checkbox[value=" + x_val.toString() + "]:checked"
-            $(element).val(x_val);
+
+            let x_val = Math.min(Math.max(Math.round(x_cord.toFixed(4)).toString(), -3), 3);
+            console.log(x_val);
+            let new_element = "input:checkbox[value=" + x_val.toString() + "]"
+            let old_element = "input:checkbox[name='X']:checked";
+
+            $(old_element).prop("checked", false);
+            $(new_element).prop("checked", true);
+
             document.getElementById('Y').value=y_cord.toFixed(4).toString();
 
             let X = $("input:checkbox[name='X']:checked").val();

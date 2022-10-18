@@ -30,7 +30,6 @@ public class Result implements Serializable{
     @Override
     public String toString(){
         return String.format("<tr><td>%s</td><td>%s</td><td>%s</td><td>%s</td><td>%s</td><td>%s</td></tr>", getX(), getY(), getR(), isInArea(), getTime(), getDate());
-        //return "<tr>" +getX() + " "  + getY() + " " + getR() + " " + isInArea() + " " + getDate() + " " + getTime();
     }
 
     public double getX() {
