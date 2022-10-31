@@ -27,5 +27,14 @@
         <servlet-name>TableController</servlet-name>
         <url-pattern>/TableController</url-pattern>
     </servlet-mapping>
+    <filter>
+        <filter-name>ValidationFilter</filter-name>
+        <filter-class>filters.ValidationFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>ValidationFilter</filter-name>
+        <url-pattern>/AreaCheckServlet</url-pattern>
+        <dispatcher>FORWARD</dispatcher>
+    </filter-mapping>
 
 </web-app>
