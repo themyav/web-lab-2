@@ -1,5 +1,5 @@
-function sendAreaCheckRequest(clicked){
-    if(clicked || (validate() && checkValue($('#R').val(), 1, 5, 1))){
+function sendAreaCheckRequest(clicked) {
+    if (clicked || (validate() && checkValue($('#R').val(), 1, 5, 1))) {
 
         $.ajax({
             type: 'get',
@@ -11,13 +11,12 @@ function sendAreaCheckRequest(clicked){
 
             }
         });
-    }
-    else {
+    } else {
         document.getElementById('errorMessage').innerText = 'Проверьте корректность введенных значений!';
     }
 }
 
-function sendCleanRequest(){
+function sendCleanRequest() {
     $.ajax({
         type: 'get',
         url:'http://localhost:8600/web-lab-2/ControllerServlet',
@@ -28,7 +27,7 @@ function sendCleanRequest(){
     });
 }
 
-function sendFillRequest(){
+function sendFillRequest() {
     $.ajax({
         type: 'get',
         url:'http://localhost:8600/web-lab-2/ControllerServlet',
@@ -40,21 +39,21 @@ function sendFillRequest(){
 }
 
 
-$(document).ready(function(){
+$(document).ready(function () {
 
-    $('#submit').click(function(){
+    $('#submit').click(function () {
         sendAreaCheckRequest(false);
     });
 
-    $('#cleanButton').click(function (){
+    $('#cleanButton').click(function () {
         sendCleanRequest();
     });
 
-    $('#Y').on('input', function(){
+    $('#Y').on('input', function () {
         this.value = this.value.replace(/[^0-9.,\-]/g, '');
     });
 
-    $("input:checkbox").on('click', function() {
+    $("input:checkbox").on('click', function () {
         let $box = $(this);
         if ($box.is(":checked")) {
             let group = "input:checkbox[name='" + $box.attr("name") + "']";
@@ -66,43 +65,40 @@ $(document).ready(function(){
         }
     });
 
-    $('#graph').on('click', function (e){
+    $('#graph').on('click', function (e) {
         let x_pos = e.pageX - document.getElementById('graph').offsetLeft;
         let y_pos = e.pageY - document.getElementById('graph').offsetTop;
         let zero_x = document.getElementById('graph').offsetWidth / 2;
         let zero_y = document.getElementById('graph').offsetHeight / 2;
 
         let y_cord = -1 * (y_pos - zero_y), x_cord = (x_pos - zero_x), R = $('#R').val();
-        if(checkValue(R, 1, 5, 1)){
+        if (checkValue(R, 1, 5, 1)) {
             let w = R / 0.8;
             let k = w / zero_x;
-            x_cord *=k;
-            y_cord *=k;
+            x_cord *= k;
+            y_cord *= k;
             document.getElementById('errorMessage').innerText = '';
 
             let x_val = Math.min(Math.max(Math.round(x_cord.toFixed(4)).toString(), -3), 3);
-            console.log(x_val);
             let new_element = "input:checkbox[value=" + x_val.toString() + "]"
             let old_element = "input:checkbox[name='X']:checked";
 
             $(old_element).prop("checked", false);
             $(new_element).prop("checked", true);
 
-            document.getElementById('Y').value=y_cord.toFixed(4).toString();
+            document.getElementById('Y').value = y_cord.toFixed(4).toString();
 
             let X = $("input:checkbox[name='X']:checked").val();
             let Y = $("#Y").val();
-            if(X == null || Y == null || !checkValue(X, -5, 3, 0) || !checkValue(Y, -3, 5, 0)) {
+            if (X == null || Y == null || !checkValue(X, -5, 3, 0) || !checkValue(Y, -3, 5, 0)) {
                 document.getElementById('errorMessage').innerText = 'Значение X или Y в данной точке не корректно!';
-            }
-            else{
+            } else {
                 sendAreaCheckRequest(true);
                 restoreCanvas();
-                drawPoint(x_pos,y_pos, '', ctx);
+                drawPoint(x_pos, y_pos, '', ctx);
                 document.getElementById('errorMessage').innerText = '';
             }
-        }
-        else{
+        } else {
             document.getElementById('errorMessage').innerText = 'Введите корректный R!';
         }
     });

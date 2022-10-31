@@ -13,15 +13,14 @@ import java.nio.charset.StandardCharsets;
 public class TableControllerServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        if(request.getParameter("action").equals("clean")){
+        if (request.getParameter("action").equals("clean")) {
             TableDB table = new TableDB();
             request.getSession().setAttribute("table", table);
             getServletContext().getRequestDispatcher("/index.jsp").forward(request, response); //нужно ли...
-        }
-        else if(request.getParameter("action").equals("fill")){
+        } else if (request.getParameter("action").equals("fill")) {
 
             TableDB table = (TableDB) request.getSession().getAttribute("table");
-            if(table == null) table = new TableDB();
+            if (table == null) table = new TableDB();
 
             response.setContentType("text/html");
             OutputStream outputStream = response.getOutputStream();
@@ -32,8 +31,4 @@ public class TableControllerServlet extends HttpServlet {
         }
     }
 
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-    }
 }
